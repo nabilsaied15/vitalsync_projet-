@@ -1,5 +1,5 @@
 # VitalSync - Système de Suivi Médical et Sportif
-#Rapport de projet
+#Rapport de projet 2026
 ## Description
 VitalSync est une application moderne de suivi médical et sportif. Ce dépôt contient l'infrastructure DevOps complète, incluant la conteneurisation, la pipeline CI/CD et les manifestes d'orchestration Kubernetes.
 

@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: vitalsync-backend
 spec:
-  replicas: 2 # Justification: 2 replicas ensure high availability (if one pod fails, the other continues).
+  replicas: 2
   selector:
     matchLabels:
       app: vitalsync-backend
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: ghcr.io/<USERNAME>/vitalsync-backend:latest # Replace <USERNAME>
+        image: ghcr.io/<USERNAME>/vitalsync-backend:latest
         ports:
         - containerPort: 3000
         env:
@@ -31,7 +31,6 @@ spec:
             port: 3000
           initialDelaySeconds: 15
           periodSeconds: 10
-        # Readiness probes could also be added here for production.
 ---
 apiVersion: v1
 kind: Service
@@ -44,4 +43,4 @@ spec:
   - protocol: TCP
     port: 3000
     targetPort: 3000
-  type: ClusterIP # Internal exposure only.
+  type: ClusterIP

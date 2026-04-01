@@ -29,7 +29,7 @@ spec:
   - protocol: TCP
     port: 80
     targetPort: 80
-  type: NodePort # Justification: NodePort exposes the service on each node on a static port (Part 4, Step c).
+  type: NodePort
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress

@@ -4,7 +4,7 @@ WORKDIR /app
 COPY backend/package*.json ./
 RUN npm install
 COPY backend/ ./
-# Run tests
+# Test
 RUN npm test -- --passWithNoTests
 
 # Production stage

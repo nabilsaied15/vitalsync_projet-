@@ -1,15 +1,8 @@
-# Node context
 node_modules/
 npm-debug.log
 .env
-
-# Testing
 coverage/
-
-# IDE context
 .vscode/
 .idea/
-
-# OS context
 .DS_Store
 Thumbs.db

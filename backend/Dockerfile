@@ -1,10 +1,16 @@
 # Build stage
 FROM node:20-alpine AS build
 WORKDIR /app
+<<<<<<< HEAD
 COPY backend/package*.json ./
 RUN npm install
 COPY backend/ ./
 # Test
+=======
+COPY package*.json ./
+RUN npm install
+COPY . .
+>>>>>>> 372958d (commit des dockerfiles)
 RUN npm test -- --passWithNoTests
 
 # Production stage

@@ -3,9 +3,15 @@ services:
   vitalsync-db:
     image: postgres:15-alpine
     environment:
+<<<<<<< HEAD
       POSTGRES_USER: ${DB_USER:-vitalsync}
       POSTGRES_PASSWORD: ${DB_PASSWORD:-vitalsync_pass}
       POSTGRES_DB: ${DB_NAME:-vitalsync_db}
+=======
+      POSTGRES_USER: 
+      POSTGRES_PASSWORD: 
+      POSTGRES_DB: 
+>>>>>>> 372958d (commit des dockerfiles)
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:

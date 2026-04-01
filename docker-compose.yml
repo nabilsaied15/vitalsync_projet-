@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  vitalsync-db:
+    image: postgres:15-alpine
+    container_name: vitalsync-db
+    environment:
+      POSTGRES_USER: ${DB_USER:-vitalsync}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-vitalsync_pass}
+      POSTGRES_DB: ${DB_NAME:-vitalsync_db}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - vitalsync-network
+    restart: always
+
+  vitalsync-backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: vitalsync-backend
+    environment:
+      DB_HOST: vitalsync-db
+      DB_USER: ${DB_USER:-vitalsync}
+      DB_PASSWORD: ${DB_PASSWORD:-vitalsync_pass}
+      DB_NAME: ${DB_NAME:-vitalsync_db}
+    ports:
+      - "3000:3000"
+    depends_on:
+      - vitalsync-db
+    networks:
+      - vitalsync-network
+
+  vitalsync-frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: vitalsync-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - vitalsync-backend
+    networks:
+      - vitalsync-network
+
+networks:
+  vitalsync-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
